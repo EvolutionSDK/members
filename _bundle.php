@@ -9,6 +9,7 @@ class Bundle extends SQLBundle {
 	
 	public function __initBundle() {
 		e::$events->lhtml_add_hook(':members', $this);
+		e::$events->lhtml_add_hook(':member', $this->currentMember());
 	}
 	
 	public function currentMember() {
