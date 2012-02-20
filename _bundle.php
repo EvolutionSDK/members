@@ -2,6 +2,7 @@
 
 namespace Bundles\Members;
 use Bundles\SQL\SQLBundle;
+use Bundles\SQL\NoMatchException as NoMatch;
 use Exception;
 use e;
 
@@ -18,10 +19,7 @@ class Bundle extends SQLBundle {
 	public function currentMember() {
 		if(is_null($this->_currentMember)) {
 			try { $this->_currentMember = e::$session->getMembersMember(); }
-			catch(\Bundles\SQL\NoMatchException $e) { $this->_currentMember = false; }
-			catch(Exception $e) {
-				dump($e);
-			}
+			catch(NoMatch $e) { $this->_currentMember = false; }
 		}
 		return $this->_currentMember;
 	}
