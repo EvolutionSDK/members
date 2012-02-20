@@ -21,11 +21,16 @@ class Account extends Model {
 	 * @author Kelly Lauren Summer Becker
 	 */
 	public function login() {
-		return $this->linkSession(e::$session->_id);
+		return $this->linkSessionSession(e::$session->_id);
 	}
 	
 	public function name() {
 		return $this->first_name.' '.$this->last_name;
+	}
+
+	public function setPassword($pass) {
+		$this->password = md5($pass);
+		$this->save();
 	}
 	
 }
