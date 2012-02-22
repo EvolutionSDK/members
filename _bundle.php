@@ -11,7 +11,6 @@ class Bundle extends SQLBundle {
 	private $_currentMember = null;
 	
 	public function _on_framework_loaded() {
-		parent::_on_framework_loaded();
 		e::configure('lhtml')->activeAddKey('hook', ':members', $this);
 		e::configure('lhtml')->activeAddKey('hook', ':member', function() { return e::$members->currentMember(); });
 	}
