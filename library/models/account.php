@@ -1,7 +1,7 @@
 <?php
 
 namespace Bundles\Members\Models;
-use Bundles\Information\Model;
+use Bundles\SQL\Model;
 use Exception;
 use e;
 

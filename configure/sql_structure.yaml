@@ -26,3 +26,5 @@ account:
     - account
   hasMany:
     - session.list
+  extensions:
+    - information
