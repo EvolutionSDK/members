@@ -28,3 +28,4 @@ account:
     - session.list
   extensions:
     - information
+    - taxonomy
