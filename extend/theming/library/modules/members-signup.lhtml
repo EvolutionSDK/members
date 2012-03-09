@@ -31,7 +31,7 @@
 	<label class="input">
 		<span class="title">Password</span>
 		<div class="field">
-			<input type="text" name="password" />
+			<input type="password" name="password" />
 			<span class="help">
 				<:if not_empty="messages.field(password)">
 					{messages.field(password).message}
@@ -45,7 +45,7 @@
 	<label class="input">
 		<span class="title">Confirm Password</span>
 		<div class="field">
-			<input type="text" name="password2" />
+			<input type="password" name="password2" />
 			<span class="help">
 				<:if not_empty="messages.field(password2)">
 					{messages.field(password2).message}
