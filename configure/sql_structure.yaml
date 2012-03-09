@@ -22,7 +22,7 @@ account:
     work: string
     school: string
     church: string
-    optin: bool
+    opt-in: bool
   manyToMany:
     - account
   hasMany:
