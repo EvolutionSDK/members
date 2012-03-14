@@ -23,6 +23,7 @@ account:
     school: string
     church: string
     opt-in: bool
+    status: "enum('pending','active','frozen')"
   manyToMany:
     - account
   hasMany:
