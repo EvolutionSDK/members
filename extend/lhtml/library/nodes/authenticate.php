@@ -8,7 +8,7 @@ use e;
 
 class Authenticate extends Node {
 	
-	public function init() {
+	public function ready() {
 		$this->element = false;
 	}
 	
