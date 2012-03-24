@@ -1,64 +1,69 @@
-<form action="{:module.action}" method="POST" :load=":api.messages.unviewed.ns([:module.slug]) as messages">
-	<input type="hidden" name="namespace" value="{:module.slug}" />
-	<label class="input">
-		<span class="title">Full Name</span>
-		<div class="field" :load="messages.field(full_name) as full_name">
-			<input type="text" name="full_name" value="{full_name.value}" />
-			<span class="help">
-				<:if not_empty="full_name.message">
-					{email.message}
-					<:else>
-						Your first and last name.
-					</:else>
-				</:if>
-			</span>
-		</div>
-	</label>
-	<label class="input">
-		<span class="title">Email</span>
-		<div class="field" :load="messages.field(email) as email">
-			<input type="text" name="email" value="{email.value}" />
-			<span class="help">
-				<:if not_empty="email.message">
-					{email.message}
-					<:else>
-						The preferred email for us to contact you.
-					</:else>
-				</:if>
-			</span>
-		</div>
-	</label>
-	<label class="input">
-		<span class="title">Password</span>
-		<div class="field" :load="messages.field(password) as password">
-			<input type="password" name="password" />
-			<span class="help">
-				<:if not_empty="password.message">
-					{password.message}
-					<:else>
-						A secure password to help us authenticate you.
-					</:else>
-				</:if>
-			</span>
-		</div>
-	</label>
-	<label class="input">
-		<span class="title">Confirm Password</span>
-		<div class="field" :load="messages.field(password2) as password2">
-			<input type="password" name="password2" />
-			<span class="help">
-				<:if not_empty="password2.message">
-					{password2.message}
-					<:else>
-						Just to help you make sure you typed it right.
-					</:else>
-				</:if>
-			</span>
-		</div>
-	</label>
-	<label class="input">
-		<div class="field">
-			<input type="submit" value="Signup" />
-		</div>
-	</label>
-</form>
+<:template name="module" class="hair">
+	<title>Members Signup</title>
+	<content>
+		<form action="{:module.action}" method="POST" :load=":api.messages.unviewed.ns([:module.slug]) as messages">
+			<input type="hidden" name="namespace" value="{:module.slug}" />
+			<label class="input">
+				<span class="title">Full Name</span>
+				<div class="field" :load="messages.field(full_name) as full_name">
+					<input type="text" name="full_name" value="{full_name.value}" />
+					<span class="help">
+						<:if not_empty="full_name.message">
+							{email.message}
+							<:else>
+								Your first and last name.
+							</:else>
+						</:if>
+					</span>
+				</div>
+			</label>
+			<label class="input">
+				<span class="title">Email</span>
+				<div class="field" :load="messages.field(email) as email">
+					<input type="text" name="email" value="{email.value}" />
+					<span class="help">
+						<:if not_empty="email.message">
+							{email.message}
+							<:else>
+								The preferred email for us to contact you.
+							</:else>
+						</:if>
+					</span>
+				</div>
+			</label>
+			<label class="input">
+				<span class="title">Password</span>
+				<div class="field" :load="messages.field(password) as password">
+					<input type="password" name="password" />
+					<span class="help">
+						<:if not_empty="password.message">
+							{password.message}
+							<:else>
+								A secure password to help us authenticate you.
+							</:else>
+						</:if>
+					</span>
+				</div>
+			</label>
+			<label class="input">
+				<span class="title">Confirm Password</span>
+				<div class="field" :load="messages.field(password2) as password2">
+					<input type="password" name="password2" />
+					<span class="help">
+						<:if not_empty="password2.message">
+							{password2.message}
+							<:else>
+								Just to help you make sure you typed it right.
+							</:else>
+						</:if>
+					</span>
+				</div>
+			</label>
+			<label class="input">
+				<div class="field">
+					<input type="submit" value="Signup" />
+				</div>
+			</label>
+		</form>
+	</content>
+</:template>
