@@ -1,4 +1,4 @@
-<:template name="module" class="hair">
+<:template name="module">
 	<title>Members Signup</title>
 	<content>
 		<form action="{:module.action}" method="POST" :load=":api.messages.unviewed.ns([:module.slug]) as messages">
