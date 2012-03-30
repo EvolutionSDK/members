@@ -32,5 +32,12 @@ class Account extends Model {
 		$this->password = md5($pass);
 		$this->save();
 	}
+
+	public function isCurrentMember() {
+		$member = e::$members->currentMember();
+		if(!is_object($member))
+			return false;
+		return $this->id > 0 && $this->id === $member->id;
+	}
 	
 }
