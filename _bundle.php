@@ -13,6 +13,9 @@ class Bundle extends SQLBundle {
 	public function _on_framework_loaded() {
 		e::configure('lhtml')->activeAddKey('hook', ':members', $this);
 		e::configure('lhtml')->activeAddKey('hook', ':member', function() { return e::$members->currentMember(); });
+		
+		// Add manager
+		e::configure('manage')->activeAddKey('bundle', __NAMESPACE__, 'members');
 	}
 	
 	public function currentMember() {
