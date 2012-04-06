@@ -13,6 +13,7 @@ class Authenticate extends Node {
 	}
 	
 	public function build() {
+		$this->element = false;
 		$member = e::$members->currentMember();
 		if(!$member) $auth = 0;
 		else $auth = $member->permission;
