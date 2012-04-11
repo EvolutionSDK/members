@@ -9,7 +9,7 @@
 				<:if not_empty="email.message">
 					{email.message}
 					<:else>
-						Enter your email address (not case-sensitive).
+						Enter your email address (case-sensitive).
 					</:else>
 				</:if>
 			</span>
