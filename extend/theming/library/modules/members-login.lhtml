@@ -1,6 +1,10 @@
 <h1>Member Login</h1>
-<form action="{:module.action}" method="POST" :load=":api.messages.unviewed.ns([:module.slug]) as messages">
-	<input type="hidden" name="namespace" value="{:module.slug}" />
+<form action="/act/members/login" method="POST">
+
+	<input type="hidden" name="namespace" value="members-login" />
+
+	<:module slug="messages-display" namespace="members-login" />
+
 	<label class="input">
 		<span class="title">Email</span>
 		<div class="field" :load="messages.field(email) as email">
