@@ -1,0 +1,37 @@
+<h1>Member Login</h1>
+<form action="{:module.action}" method="POST" :load=":api.messages.unviewed.ns([:module.slug]) as messages">
+	<input type="hidden" name="namespace" value="{:module.slug}" />
+	<label class="input">
+		<span class="title">Email</span>
+		<div class="field" :load="messages.field(email) as email">
+			<input type="text" name="email" value="{email.value}" />
+			<span class="help">
+				<:if not_empty="email.message">
+					{email.message}
+					<:else>
+						Enter your email address (not case-sensitive).
+					</:else>
+				</:if>
+			</span>
+		</div>
+	</label>
+	<label class="input">
+		<span class="title">Password</span>
+		<div class="field" :load="messages.field(password) as password">
+			<input type="password" name="password" />
+			<span class="help">
+				<:if not_empty="password.message">
+					{password.message}
+					<:else>
+						Enter your password to authenticate yourself.
+					</:else>
+				</:if>
+			</span>
+		</div>
+	</label>
+	<label class="input">
+		<div class="field">
+			<input type="submit" value="Login" />
+		</div>
+	</label>
+</form>
