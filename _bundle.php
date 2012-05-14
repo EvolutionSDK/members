@@ -20,9 +20,10 @@ class Bundle extends SQLBundle {
 	
 	public function currentMember() {
 		if(is_null($this->_currentMember)) {
-			try { $this->_currentMember = e::$session->getMembersMember(); }
+			try { $this->_currentMember = $this->getMember(e::$session->data->currentMember); }
 			catch(NoMatch $e) { $this->_currentMember = false; }
 		}
+
 		return $this->_currentMember;
 	}
 	
@@ -49,7 +50,7 @@ class Bundle extends SQLBundle {
 			return array('type' => 'error', 'message' => 'You entered an invalid password.');
 		}
 
-		if($return) return $this->getMember($return)->linkSessionSession(e::$session->_id);
+		if($return) return e::$session->data->currentMember = $return['id'];
 		else return array('type' => 'error', 'message' => 'Email or Password was incorrect.');
 	}
 
@@ -76,8 +77,8 @@ class Bundle extends SQLBundle {
 	}
 	
 	public function logout() {
-		if($tmp = $this->currentMember())
-			$tmp->unlinkSessionSession(e::$session->_id);
+		if($this->currentMember())
+			e::$session->data->currentMember = null;
 
 		return true;
 	}
@@ -90,6 +91,7 @@ class Bundle extends SQLBundle {
 
 	public function route() {
 		$currentMember = $this->currentMember();
+		dump($currentMember);
 		dump($currentMember->name());
 	}
 	
