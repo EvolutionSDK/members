@@ -10,8 +10,10 @@ class Account extends Model {
 	/**
 	 * Get HTML Link
 	 */
-	public function __getHTMLLink() {
-		return '<a href="/test/nate/member/'.$this->id.'">'.$this->first_name . ' ' . $this->last_name . '</a>';
+	public function __getHTMLLink($portal) {
+		if($portal)
+			$portal .= "/";
+		return '<a href="/'.$portal.'member/'.$this->id.'">'.$this->first_name . ' ' . $this->last_name . '</a>';
 	}
 	
 	/**
