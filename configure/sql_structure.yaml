@@ -26,8 +26,6 @@ account:
     status: "enum('pending','active','frozen')"
   manyToMany:
     - account
-  hasMany:
-    - session.list
   extensions:
     - information
     - taxonomy
