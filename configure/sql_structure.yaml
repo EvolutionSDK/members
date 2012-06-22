@@ -14,7 +14,7 @@ account:
     email: string
     password: string
     permission: 
-      Type: int
+      Type: number
       Default: 1
     gender: "enum('Opt-Out','Male','Female')"
     age: number
