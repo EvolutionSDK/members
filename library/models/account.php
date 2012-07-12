@@ -27,7 +27,15 @@ class Account extends Model {
 	}
 	
 	public function name() {
-		return $this->first_name.' '.$this->last_name;
+		if(!$this->first_name && !$this->last_name) {
+			if($this->email)
+				$name = $this->email;
+			elseif($this->phone)
+				$name = 'SMS '.$this->phone;
+		}
+		else 
+			$name = $this->first_name.' '.$this->last_name;
+		return $name;
 	}
 
 	public function setPassword($pass) {
