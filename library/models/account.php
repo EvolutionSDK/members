@@ -13,7 +13,7 @@ class Account extends Model {
 	public function __getHTMLLink($portal) {
 		if($portal)
 			$portal .= "/";
-		return '<a href="/'.$portal.'member/'.$this->id.'">'.$this->first_name . ' ' . $this->last_name . '</a>';
+		return '<a href="/'.$portal.'member/'.$this->id.'">'.$this->name() . '</a>';
 	}
 	
 	/**
@@ -28,10 +28,7 @@ class Account extends Model {
 	
 	public function name() {
 		if(!$this->first_name && !$this->last_name) {
-			if($this->email)
-				$name = $this->email;
-			elseif($this->phone)
-				$name = 'SMS '.$this->phone;
+			$name = 'Unknown Name';
 		}
 		else 
 			$name = $this->first_name.' '.$this->last_name;
