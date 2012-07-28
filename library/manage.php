@@ -34,14 +34,10 @@ class Manage {
 		 * Show Members List
 		 */
 		$list = '';
-		$headers = '<tr><th>ID</th><th>Joined</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Actions</th><th>Accounts</th></tr>';
+		$headers = '<tr><th>ID</th><th>Joined</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Actions</th></tr>';
 		foreach(e::$members->getMembers() as $member) {
 			$time = strtotime($member->created_timestamp);
 			$joined = $time > 0 ? date('M jS Y', $time) : 'Unknown';
-			$accounts = array();
-			foreach($member->getWebappAccounts() as $webapp)
-				$accounts[] = $webapp->name;
-			$accounts = implode(', ', $accounts);
 			$list .= '<tr>'.
 				'<td>' . $member->id . '</td>'.
 				'<td>' . $joined . '</td>'.
@@ -49,7 +45,6 @@ class Manage {
 				'<td>' . $member->last_name . '</td>'.
 				'<td>' . $member->email . '</td>'.
 				'<td><a href="/@manage/members/'.$member->id.'">Manage</a></td>'.
-				'<td>' . $accounts . '</td>'.
 			'</tr>';
 		}
 		return $_a . '<table class="style">' . $headers . $list . '</table> ' . $_b;
