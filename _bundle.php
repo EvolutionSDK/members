@@ -9,15 +9,15 @@ use e;
 class Bundle extends SQLBundle {
 
 	private $_currentMember = null;
-	
+
 	public function _on_framework_loaded() {
 		e::configure('lhtml')->activeAddKey('hook', ':members', $this);
 		e::configure('lhtml')->activeAddKey('hook', ':member', function() { return e::$members->currentMember(); });
-		
+
 		// Add manager
 		e::configure('manage')->activeAddKey('bundle', __NAMESPACE__, 'members');
 	}
-	
+
 	public function currentMember() {
 		if(is_null($this->_currentMember)) {
 			try { $this->_currentMember = $this->getMember(e::$session->data->currentMember); }
@@ -26,7 +26,7 @@ class Bundle extends SQLBundle {
 
 		return $this->_currentMember;
 	}
-	
+
 	public function login($email, $password, $options = array()) {
 		$return = e::$sql->query("SELECT * FROM `members.account` WHERE `email` = '$email' AND `password` = md5('$password');")->row();
 
@@ -39,7 +39,7 @@ class Bundle extends SQLBundle {
 
 			if(!$return)
 				return array('type' => 'error', 'message' => 'No account with that email address.');
-			
+
 			/**
 			 * Indicate that password setup can happen
 			 * @author Nate Ferrero
@@ -57,7 +57,7 @@ class Bundle extends SQLBundle {
 	public function register($email, $password) {
 		if($this->getByEmail($email))
 			return array('type' => 'error', 'messsage' => 'This email is already in use.');
-		
+
 		try {
 			$member = e::$members->newMember();
 			$member->email = $email;
@@ -69,13 +69,21 @@ class Bundle extends SQLBundle {
 			return array('error', $e->getMessage());
 		}
 	}
-	
+
+	/**
+	 * Let other bundles update a member's address.
+	 */
+	public function _on_memberUpdateAddress($member, $data) {
+		if(is_object($member))
+			$member->save($data);
+	}
+
 	public function getByEmail($email) {
 		$return = e::$sql->query("SELECT * FROM `members.account` WHERE `email` = '$email';")->row();
 		if($return) return $this->getMember($return);
 		else return false;
 	}
-	
+
 	public function logout() {
 		if($this->currentMember())
 			e::$session->data->currentMember = null;
@@ -89,10 +97,16 @@ class Bundle extends SQLBundle {
 			e\redirect($to);
 	}
 
+	public function requireMemberRedirect($to) {
+		$member = $this->currentMember();
+		if(!$member)
+			e\redirect($to);
+	}
+
 	public function route() {
 		$currentMember = $this->currentMember();
 		dump($currentMember);
 		dump($currentMember->name());
 	}
-	
+
 }
